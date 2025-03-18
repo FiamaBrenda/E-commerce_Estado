@@ -32,7 +32,9 @@ public class Produto {
 	private String imgUrl;
 
 	@ManyToMany
-	@JoinTable(name = "tb_produto_categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	@JoinTable(name = "tb_produto_categoria", 
+	joinColumns = @JoinColumn(name = "produto_id"), 
+	inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private Set<Categoria> categorias = new HashSet<>();
 
 	@OneToMany(mappedBy = "id.produto")
@@ -97,6 +99,14 @@ public class Produto {
 	public List<Pedido> getPedido() {
 
 		return items.stream().map(x -> x.getPedido()).toList();
+	}
+	
+	public Set<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(Set<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 }
