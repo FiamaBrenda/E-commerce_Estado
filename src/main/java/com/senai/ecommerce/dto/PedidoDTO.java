@@ -1,15 +1,21 @@
 package com.senai.ecommerce.dto;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.senai.ecommerce.entities.ItemDoPedido;
 import com.senai.ecommerce.entities.Pedido;
 import com.senai.ecommerce.entities.StatusDoPedido;
 
 public class PedidoDTO {
-
+	
+	
 	private Long id;
 	private Instant momento;
 	private StatusDoPedido status;
+	@JsonProperty("clienteId")
 	private Long clienteId;
 
 	public PedidoDTO() {
@@ -27,7 +33,7 @@ public class PedidoDTO {
 		id = entity.getId();
 		momento = entity.getMomento();
 		status = entity.getStatus();
-		clienteId = entity.getCliente().getId();
+		clienteId = entity.getCliente().getId();	
 	}
 
 	public Long getId() {
@@ -61,5 +67,4 @@ public class PedidoDTO {
 	public void setClienteId(Long clienteId) {
 		this.clienteId = clienteId;
 	}
-
 }
