@@ -41,11 +41,12 @@ public class ProdutoService {
 		prod.setDescricao(dto.getDescricao());
 		prod.setPreco(dto.getPreco());
 		prod.setImgUrl(dto.getImgUrl());
+		
 		for(CategoriaDTO cat : dto.getCategorias()) {
-			
 			Categoria entity = categoriaRepository.getReferenceById(cat.getId());
 			prod.getCategorias().add(entity);
 		}
+		
 		prod = repo.save(prod);
 		return new ProdutoDTO(prod);
 	}

@@ -17,6 +17,8 @@ public class PedidoDTO {
 	private StatusDoPedido status;
 	@JsonProperty("clienteId")
 	private Long clienteId;
+	
+	private List<ItemPedidoDTO> items = new ArrayList<>();
 
 	public PedidoDTO() {
 
@@ -34,6 +36,11 @@ public class PedidoDTO {
 		momento = entity.getMomento();
 		status = entity.getStatus();
 		clienteId = entity.getCliente().getId();	
+		
+		for (ItemDoPedido item : entity.getItems()) {
+			ItemPedidoDTO itemDto = new ItemPedidoDTO(item);
+			items.add(itemDto);
+		}
 	}
 
 	public Long getId() {
@@ -66,5 +73,13 @@ public class PedidoDTO {
 
 	public void setClienteId(Long clienteId) {
 		this.clienteId = clienteId;
+	}
+
+	public List<ItemPedidoDTO> getItems() {
+		return items;
+	}
+
+	public void setItems(List<ItemPedidoDTO> items) {
+		this.items = items;
 	}
 }
